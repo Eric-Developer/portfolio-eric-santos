@@ -22,24 +22,30 @@ export default function Home() {
           <a
             href="https://agendeaii.com.br/start"
             target="_blank"
-            className="project-card live-card"
+            className="project-card"
           >
-            <iframe
-              src="https://agendeaii.com.br/start"
-              className="project-frame"
-            ></iframe>
+            <Image
+              src="/agendeai.png"
+              alt="Agende Aí"
+              width={500}
+              height={300}
+              className="project-image"
+            />
           </a>
 
           {/* PROJETO 2 */}
           <a
             href="https://aprendimais.netlify.app/"
             target="_blank"
-            className="project-card live-card"
+            className="project-card"
           >
-            <iframe
-              src="https://aprendimais.netlify.app/"
-              className="project-frame"
-            ></iframe>
+            <Image
+              src="/aprendi.png"
+              alt="Aprendi Mais"
+              width={500}
+              height={300}
+              className="project-image"
+            />
           </a>
 
         </div>
@@ -77,7 +83,8 @@ export default function Home() {
           <div className="skill-icon">
             <Image src="/mongodb.png" alt="MongoDB" width={65} height={65} />
           </div>
-           <div className="skill-icon">
+
+          <div className="skill-icon">
             <Image src="/js.png" alt="JavaScript" width={65} height={65} />
           </div>
 
