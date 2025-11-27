@@ -1,18 +1,61 @@
+"use client"
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
+  const skills = [
+    "/next.svg",
+    "/java.svg",
+    "/sql.svg",
+    "/mongodb.png",
+    "/js.png",
+    "/ts.png",
+    "/python.webp",
+    "/node.webp",
+    "/html.webp",
+    "/css.webp",
+    "/bootstrap.webp",
+    "/tailwind.webp",
+  ];
+
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(skills.length / itemsPerPage);
+
+  const [page, setPage] = useState(0);
+
+  const currentSkills = skills.slice(
+    page * itemsPerPage,
+    page * itemsPerPage + itemsPerPage
+  );
+
   return (
     <div className="hero-container">
 
-      {/* ESQUERDA — NOME + FUNÇÃO + BOTÃO */}
+      {/* ESQUERDA */}
       <div className="hero-left">
         <h1 className="hero-name">
           Eric <span>Santos</span>
         </h1>
 
         <h3 className="hero-role">FULLSTACK SOFTWARE ENGINEER</h3>
+        <p className="hero-description">
+          Formado em Análise e Desenvolvimento de Sistemas, atuo como desenvolvedor
+          criando e aprimorando aplicações web. Tenho experiência prática com
+          JavaScript, TypeScript, Node.js, Next.js, PHP, Laravel, SQL e outras
+          tecnologias voltadas à construção de sistemas modernos. Ao longo da minha
+          trajetória, desenvolvi habilidade em solucionar problemas, otimizar processos
+          e entregar funcionalidades eficientes. Sou comprometido, aprendo rápido e
+          busco sempre evoluir como programador para entregar resultados de qualidade.
+        </p>
 
-        <button className="btn-primary">Download CV</button>
+
+          <a
+          href="/eric-curriculo.pdf"
+          download="Eric-Santos-Curriculo.pdf"
+          className="btn-primary"
+        >
+          Download CV
+        </a>
 
         <div className="projects-title">Projetos</div>
 
@@ -63,34 +106,27 @@ export default function Home() {
         </div>
       </div>
 
-      {/* SKILLS */}
+      {/* SKILLS COM PAGINAÇÃO */}
       <div className="hero-right">
         <h3 className="skills-title">SKILLS</h3>
 
         <div className="skills-box icons-grid">
-          <div className="skill-icon">
-            <Image src="/next.svg" alt="Next.js" width={65} height={65} />
-          </div>
+          {currentSkills.map((src, index) => (
+            <div key={index} className="skill-icon">
+              <Image src={src} width={65} height={65} alt="Skill" />
+            </div>
+          ))}
+        </div>
 
-          <div className="skill-icon">
-            <Image src="/java.svg" alt="Java" width={65} height={65} />
-          </div>
-
-          <div className="skill-icon">
-            <Image src="/sql.svg" alt="SQL" width={65} height={65} />
-          </div>
-
-          <div className="skill-icon">
-            <Image src="/mongodb.png" alt="MongoDB" width={65} height={65} />
-          </div>
-
-          <div className="skill-icon">
-            <Image src="/js.png" alt="JavaScript" width={65} height={65} />
-          </div>
-
-          <div className="skill-icon">
-            <Image src="/ts.png" alt="TypeScript" width={65} height={65} />
-          </div>
+        {/* PAGINAÇÃO (PONTINHOS) */}
+        <div className="skills-pagination">
+          {[...Array(totalPages)].map((_, i) => (
+            <span
+              key={i}
+              className={`dot ${page === i ? "active" : ""}`}
+              onClick={() => setPage(i)}
+            ></span>
+          ))}
         </div>
       </div>
 
